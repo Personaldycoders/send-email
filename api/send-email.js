@@ -19,14 +19,13 @@ module.exports = async (req, res) => {
   if (emailDomain === blockedDomain) {
     return res.status(403).json({ status: false, message: 'Domain email "example.com" tidak diizinkan' });
   }
-
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.EMAIL,
-      pass: process.env.EMAIL_PASS
-    }
-  });
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'sender.dy@gmail.com',
+    pass: 'feofnfmppbfmbtfb' // app password
+  }
+});
 
   try {
     await transporter.sendMail({
