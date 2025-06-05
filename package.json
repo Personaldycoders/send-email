@@ -1,0 +1,12 @@
+{
+  "name": "vercel-nodemailer-api",
+  "version": "1.0.0",
+  "description": "Simple email sender API using Nodemailer on Vercel",
+  "main": "api/send-email.js",
+  "scripts": {
+    "start": "node api/send-email.js"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.9"
+  }
+}
