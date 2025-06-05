@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-
+const moment = require('moment');
 module.exports = async (req, res) => {
   const method = req.method;
 
@@ -29,14 +29,25 @@ const transporter = nodemailer.createTransport({
 
   try {
     await transporter.sendMail({
-      from: `"DyBot Mailer" <${process.env.EMAIL}>`,
+      from: process.env.EMAIL,
       to,
       subject,
       text
     });
 
-    res.status(200).json({ status: true, message: 'Email berhasil dikirim' });
-  } catch (err) {
-    res.status(500).json({ status: false, message: err.message });
-  }
-};
+   res.status(200).json({
+    status: true,
+    message: 'Email berhasil dikirim',
+    detail: {
+      to,
+      subject,
+      sent_at: moment().format('YYYY-MM-DD HH:mm:ss') // atau pakai new Date().toISOString()
+    }
+  });
+} catch (err) {
+  res.status(500).json({
+    status: false,
+    message: 'Gagal mengirim email',
+    error: err.message
+  });
+}};
