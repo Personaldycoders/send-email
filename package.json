@@ -7,6 +7,7 @@
     "start": "node api/send-email.js"
   },
   "dependencies": {
-    "nodemailer": "^6.9.9"
+    "nodemailer": "^6.9.9",
+      "moment": "^2.29.4"
   }
 }
